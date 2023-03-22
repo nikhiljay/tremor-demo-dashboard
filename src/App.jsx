@@ -24,7 +24,6 @@ const App = () => {
       {selectedView === "1" ? (
         <>
           <KpiCardGrid />
-
           <div className="mt-6">
             <ChartView />
           </div>
@@ -36,6 +35,6 @@ const App = () => {
       )}
     </main>
   );
-}
+};
 
 export default App;

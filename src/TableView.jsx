@@ -92,7 +92,7 @@ const TableView = () => {
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedNames, setSelectedNames] = useState([]);
 
-  const isSalesPersonSelected = salesPerson =>
+  const isSalesPersonSelected = (salesPerson) =>
     (salesPerson.status === selectedStatus || selectedStatus === "all") &&
     (selectedNames.includes(salesPerson.name) || selectedNames.length === 0);
 
@@ -154,15 +154,9 @@ const TableView = () => {
           <TableRow>
             <TableHeaderCell>Name</TableHeaderCell>
             <TableHeaderCell className="text-right">Leads</TableHeaderCell>
-            <TableHeaderCell className="text-right">
-              Sales ($)
-            </TableHeaderCell>
-            <TableHeaderCell className="text-right">
-              Quota ($)
-            </TableHeaderCell>
-            <TableHeaderCell className="text-right">
-              Variance
-            </TableHeaderCell>
+            <TableHeaderCell className="text-right">Sales ($)</TableHeaderCell>
+            <TableHeaderCell className="text-right">Quota ($)</TableHeaderCell>
+            <TableHeaderCell className="text-right">Variance</TableHeaderCell>
             <TableHeaderCell className="text-right">Region</TableHeaderCell>
             <TableHeaderCell className="text-right">Status</TableHeaderCell>
           </TableRow>
@@ -177,9 +171,7 @@ const TableView = () => {
                 <TableCell className="text-right">{item.leads}</TableCell>
                 <TableCell className="text-right">{item.sales}</TableCell>
                 <TableCell className="text-right">{item.quota}</TableCell>
-                <TableCell className="text-right">
-                  {item.variance}
-                </TableCell>
+                <TableCell className="text-right">{item.variance}</TableCell>
                 <TableCell className="text-right">{item.region}</TableCell>
                 <TableCell className="text-right">
                   <BadgeDelta deltaType={item.deltaType} size="xs">
@@ -192,6 +184,6 @@ const TableView = () => {
       </Table>
     </Card>
   );
-}
+};
 
 export default TableView;

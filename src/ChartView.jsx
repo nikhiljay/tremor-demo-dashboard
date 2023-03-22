@@ -34,10 +34,10 @@ export const performance = [
 ];
 
 // Basic formatters for the chart values
-const dollarFormatter = value =>
+const dollarFormatter = (value) =>
   `$ ${Intl.NumberFormat("us").format(value).toString()}`;
 
-const numberFormatter = value =>
+const numberFormatter = (value) =>
   `${Intl.NumberFormat("us").format(value).toString()}`;
 
 const ChartView = () => {
@@ -92,6 +92,6 @@ const ChartView = () => {
       />
     </Card>
   );
-}
+};
 
 export default ChartView;
