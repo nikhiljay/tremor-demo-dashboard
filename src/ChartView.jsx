@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   AreaChart,
   Card,
@@ -13,20 +13,20 @@ import { InformationCircleIcon } from "@heroicons/react/outline";
 
 export const performance = [
   {
-    date: "2021-01-01",
+    date: "2023-02-01",
     Sales: 900.73,
     Profit: 173,
     Customers: 73,
   },
   {
-    date: "2021-01-02",
+    date: "2023-03-02",
     Sales: 1000.74,
     Profit: 174.6,
     Customers: 74,
   },
   // ...
   {
-    date: "2021-03-13",
+    date: "2023-03-03",
     Sales: 882,
     Profit: 682,
     Customers: 682,
@@ -40,8 +40,18 @@ const dollarFormatter = (value) =>
 const numberFormatter = (value) =>
   `${Intl.NumberFormat("us").format(value).toString()}`;
 
-const ChartView = () => {
+const ChartView = ({ dateRange }) => {
   const [selectedKpi, setSelectedKpi] = useState("Sales");
+  const [filteredData, setFilteredData] = useState(performance);
+
+  useEffect(() => {
+    const filtered = performance.filter((item) => {
+      const itemDate = new Date(item.date);
+      return itemDate >= dateRange[0] && itemDate <= dateRange[1];
+    });
+
+    setFilteredData(filtered);
+  }, [dateRange, performance]);
 
   // map formatters by selectedKpi
   const formatters = {
@@ -81,7 +91,7 @@ const ChartView = () => {
         </div>
       </div>
       <AreaChart
-        data={performance}
+        data={filteredData}
         index="date"
         categories={[selectedKpi]}
         colors={["blue"]}
